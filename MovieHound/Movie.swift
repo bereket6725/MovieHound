@@ -34,4 +34,10 @@ public struct Movie {
             }
         }.resume()
     }
+
+    public static func nowPLaying (with completion: @escaping(_ success: Bool, _ movies: [Movie]?)->()){
+        Movie.getMovieData{(succes, object) in
+            print(object ?? "problem with movie Data")
+        }
+    }
 }

@@ -12,7 +12,9 @@ class MovieTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Movie.nowPLaying { (success: Bool, movieList: [Movie]?) in
+            
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
