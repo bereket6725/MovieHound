@@ -6,7 +6,7 @@
 //  Copyright © 2017 Bereket Ghebremedhin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //MARK: TO DO
 //1. Learn AMC Locator API
@@ -17,6 +17,9 @@ import Foundation
 
 
 public struct Movie {
+    private static let imageBaseURL = "https://image.tmdb.org/t/p/w500"
+
+    
     public var title: String!
     public var imagePath: String!
     public var description: String!
@@ -86,6 +89,36 @@ public struct Movie {
     }
 
     public static func getImage (forCell cell: AnyObject, withMovieObject movie: Movie){
-        
+        if let imagePath = checkForImageData(withMovieObject: movie) { // image is already downloaded
+            if let imageData = FileManager.default.contents(atPath: imagePath) {
+                if cell is UITableViewCell{
+                    let tableViewCell = cell as! UITableViewCell
+                    tableViewCell.imageView?.image = UIImage(data: imageData)
+                    tableViewCell.setNeedsLayout()
+                }else{
+                    //Add CollectionView Cell implementation
+                }
+            }
+        }
+        else{//have to download image and save it to disk
+            let imagePath = Movie.imageBaseURL + movie.imagePath
+            let imageURL = URL(string: imagePath)
+
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+                do {
+                    let data = try Data(contentsOf: imageURL!)
+                    let documents = getDocumentsDirectory()
+                    let imageFilePathString = documents! + "/\(movie.title)"
+                    let escapedImagePath = imageFilePathString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                    if FileManager.default.createFile(atPath: escapedImagePath, contents: data, attributes: nil){
+                        print("imageSaved")
+                    }
+
+                }
+                catch {
+                    print("no image at specified location")
+                }
+            }
+        }
     }
 }
