@@ -18,8 +18,6 @@ import UIKit
 
 public struct Movie {
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w500"
-
-    
     public var title: String!
     public var imagePath: String!
     public var description: String!

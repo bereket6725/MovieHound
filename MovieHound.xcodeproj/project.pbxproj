@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E326DC0B1E46743900A02463 /* MovieCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326DC0A1E46743900A02463 /* MovieCollectionViewController.swift */; };
+		E326DC0D1E46746700A02463 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */; };
 		E36C62A01E43F28C008393F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36C629F1E43F28C008393F6 /* AppDelegate.swift */; };
 		E36C62A51E43F28C008393F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C62A31E43F28C008393F6 /* Main.storyboard */; };
 		E36C62A71E43F28C008393F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E36C62A61E43F28C008393F6 /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E326DC0A1E46743900A02463 /* MovieCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewController.swift; sourceTree = "<group>"; };
+		E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E36C629C1E43F28C008393F6 /* MovieHound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36C629F1E43F28C008393F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E36C62A41E43F28C008393F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			children = (
 				E36C629F1E43F28C008393F6 /* AppDelegate.swift */,
 				E36C62BF1E43F33B008393F6 /* MovieTableViewController.swift */,
+				E326DC0A1E46743900A02463 /* MovieCollectionViewController.swift */,
+				E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */,
 				E36C62C11E43F3A2008393F6 /* Movie.swift */,
 				E36C62A31E43F28C008393F6 /* Main.storyboard */,
 				E36C62A61E43F28C008393F6 /* Assets.xcassets */,
@@ -204,6 +210,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36C62C01E43F33B008393F6 /* MovieTableViewController.swift in Sources */,
+				E326DC0B1E46743900A02463 /* MovieCollectionViewController.swift in Sources */,
+				E326DC0D1E46746700A02463 /* MovieCollectionViewCell.swift in Sources */,
 				E36C62A01E43F28C008393F6 /* AppDelegate.swift in Sources */,
 				E36C62C21E43F3A2008393F6 /* Movie.swift in Sources */,
 			);
@@ -413,6 +421,7 @@
 				E36C62BB1E43F28D008393F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E36C62BC1E43F28D008393F6 /* Build configuration list for PBXNativeTarget "MovieHoundTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +430,7 @@
 				E36C62BE1E43F28D008393F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
