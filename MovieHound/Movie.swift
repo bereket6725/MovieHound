@@ -8,6 +8,14 @@
 
 import Foundation
 
+//MARK: TO DO
+//1. Learn AMC Locator API
+//2. Drop places on MapView
+//3. Find a Movie Review API (Maybe NYTimes??)
+//4. Purchase AMC Ticket Using BraintTree API
+//5. Switch to AMC Now Playing API
+
+
 public struct Movie {
     public var title: String!
     public var imagePath: String!
@@ -32,12 +40,52 @@ public struct Movie {
                     completion(false, json as AnyObject?)
                 }
             }
-        }.resume()
+            }.resume()
     }
 
     public static func nowPLaying (with completion: @escaping(_ success: Bool, _ movies: [Movie]?)->()){
-        Movie.getMovieData{(succes, object) in
-            print(object ?? "problem with movie Data")
+        Movie.getMovieData{(success, object) in
+            //print(object ?? "problem with movie Data")
+            //need "original_title", "overview" and "poster path" values from JSON
+
+            if success{
+                var movieArray = [Movie]()
+                if let movieResults = object?["results"] as? [Dictionary<String,AnyObject>]{
+                    for movie in movieResults{
+                        let title = movie["original_title"] as! String
+                        let description = movie["overview"] as! String
+                        guard let posterImage = movie["poster_path"] as? String else {continue}
+                        let movieObj = Movie(title: title, imagePath: posterImage, description: description)
+                        movieArray.append(movieObj)
+                    }
+                    completion(true, movieArray)
+                }else{
+                    completion(false, nil)
+                }
+            }
         }
+    }
+
+    private static func getDocumentsDirectory() -> String? {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        guard let documents:String = paths.first else {return nil}
+
+        return documents
+    }
+
+    private static func checkForImageData (withMovieObject movie: Movie)->String?{
+        if let documents = getDocumentsDirectory(){
+            let movieImagePath = documents + "/\(movie.title!)"
+            let escapedImagePath = movieImagePath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+            if FileManager.default.fileExists(atPath: escapedImagePath!){
+                return escapedImagePath
+            }
+        }
+        return nil
+    }
+
+    public static func getImage (forCell cell: AnyObject, withMovieObject movie: Movie){
+        
     }
 }
