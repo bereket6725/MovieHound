@@ -50,6 +50,7 @@ class MovieTableViewController: UITableViewController {
         let movie = nowPlaying[indexPath.row]
         cell.textLabel?.text = movie.title
         cell.detailTextLabel?.text = movie.description
+        Movie.getImage(forCell: cell, withMovieObject: movie)
 
         return cell
     }

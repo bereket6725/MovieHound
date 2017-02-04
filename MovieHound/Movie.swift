@@ -113,6 +113,16 @@ public struct Movie {
                     if FileManager.default.createFile(atPath: escapedImagePath, contents: data, attributes: nil){
                         print("imageSaved")
                     }
+                    DispatchQueue.main.async(execute: {
+                        if cell is UITableViewCell{
+                            let tableViewCell = cell as! UITableViewCell
+                            tableViewCell.imageView?.image = UIImage(data: data)
+                            tableViewCell.setNeedsLayout()
+                        }else{
+                            //Add CollectionView Cell implementation
+                        }
+
+                    })
 
                 }
                 catch {
