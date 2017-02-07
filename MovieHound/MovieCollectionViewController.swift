@@ -15,30 +15,15 @@ class MovieCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadData()
         loadPlayingMovies()
     }
     func loadPlayingMovies(){
         callMovieNowPlayingAPI{ movieArray in
             self.nowPlaying = movieArray
             self.collectionView?.reloadData()
-
         }
     }
-//    func loadData(){
-//        Movie.nowPLaying { (success: Bool, movieList: [Movie]?) in
-//            //print(movieList ?? "couldnt get a movie List :(")
-//            if success{
-//                self.nowPlaying = movieList!
-//                DispatchQueue.main.async{
-//                    self.collectionView!.reloadData()
-//                }
-//            }
-//
-//        }
-//        
-//    }
-
+    
     func callMovieNowPlayingAPI(completion: @escaping(([MovieModel])->Void)){
         APIManager.makeNetworkRequest(urlString: Constants.APIURLS.nowPlayingMovieAPIURL, completion: { results in
             DispatchQueue.main.async {
@@ -69,7 +54,6 @@ class MovieCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return self.nowPlaying.count
@@ -80,15 +64,8 @@ class MovieCollectionViewController: UICollectionViewController {
         let movie = nowPlaying[indexPath.row]
         cell.movieTitleLabel.text = movie.title
         CacheManager.getImage(forCell: cell, withMovieObject: movie)
-
         // Configure the cell
-    
         return cell
-    }
-
-    func getCollectionViewImage(forCell cell: UICollectionViewCell, movie: Movie){
-
-
     }
 
     // MARK: UICollectionViewDelegate
