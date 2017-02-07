@@ -18,7 +18,7 @@ class CacheManager{
         return documents
     }
     //checks if image is downloaded
-     private static func checkForImageData (withMovieObject movie: Movie)->String?{
+     private static func checkForImageData (withMovieObject movie: MovieModel)->String?{
         if let documents = getDocumentsDirectory(){
             let movieImagePath = documents + "/\(movie.title!)"
             let escapedImagePath = movieImagePath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -30,7 +30,7 @@ class CacheManager{
         return nil
     }
 
-    static func getImage (forCell cell: AnyObject, withMovieObject movie: Movie){
+    static func getImage (forCell cell: AnyObject, withMovieObject movie: MovieModel){
         if let imagePath = checkForImageData(withMovieObject: movie) { // image is already downloaded
             if let imageData = FileManager.default.contents(atPath: imagePath) {
                 if cell is UICollectionViewCell{
@@ -71,7 +71,7 @@ class CacheManager{
         }
     }
 
-    private static func downloadImageAndSaveToDisk(forCell cell: AnyObject, withMovieObject movie: Movie){
+    private static func downloadImageAndSaveToDisk(forCell cell: AnyObject, withMovieObject movie: MovieModel){
         let imagePath = Movie.imageBaseURL + movie.imagePath
         let imageURL = URL(string: imagePath)
 

@@ -21,6 +21,7 @@ class APIManager {
                 print("\(error?.localizedDescription)")
                 return
             }
+
             let result = T.parseJSON(data: data!)
             completion(result)
         }
