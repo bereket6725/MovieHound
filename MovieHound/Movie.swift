@@ -15,8 +15,8 @@ import UIKit
 //4. Purchase AMC Ticket Using BraintTree API
 //5. Switch to AMC Now Playing API
 
-
-public struct Movie {
+typealias JSONStandard = [String:AnyObject]
+public struct Movie: Parsable {
     static let imageBaseURL = "https://image.tmdb.org/t/p/w500"
     public var title: String!
     public var imagePath: String!
@@ -26,6 +26,10 @@ public struct Movie {
         self.title = title
         self.imagePath = imagePath
         self.description = description
+    }
+
+    static func parseJSON(data: Data) -> [Movie]{
+        return [Movie]()
     }
 
     private static func getMovieData(with completion: @escaping (_ success: Bool, _ object: AnyObject?)->()){
@@ -47,7 +51,6 @@ public struct Movie {
     public static func nowPLaying (with completion: @escaping(_ success: Bool, _ movies: [Movie]?)->()){
         Movie.getMovieData{(success, object) in
             //print(object ?? "problem with movie Data")
-            //need "original_title", "overview" and "poster path" values from JSON
 
             if success{
                 var movieArray = [Movie]()
@@ -67,13 +70,14 @@ public struct Movie {
         }
     }
 
+    //creates a path to a directory for image
     private static func getDocumentsDirectory() -> String? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         guard let documents:String = paths.first else {return nil}
 
         return documents
     }
-
+    //checks if image is downloaded
     private static func checkForImageData (withMovieObject movie: Movie)->String?{
         if let documents = getDocumentsDirectory(){
             let movieImagePath = documents + "/\(movie.title!)"
@@ -85,7 +89,7 @@ public struct Movie {
         }
         return nil
     }
-
+    //
     public static func getImage (forCell cell: AnyObject, withMovieObject movie: Movie){
         if let imagePath = checkForImageData(withMovieObject: movie) { // image is already downloaded
             if let imageData = FileManager.default.contents(atPath: imagePath) {

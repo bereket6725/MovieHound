@@ -10,20 +10,20 @@ import Foundation
 
 
 class APIManager {
-    static func makeNetworkRequest(with completion: @escaping (_ success: Bool, _ object: AnyObject?)->()){
-        let session = URLSession(configuration: .default)
-        let request = URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=e270b14e907deaf2179a07bfd97bc94a")!)
-        session.dataTask(with: request) {(data:Data?,response: URLResponse?, error: Error?) in
-            if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                if let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode {
-                    completion(true, json as AnyObject?)
-                }
-                else{
-                    completion(false, json as AnyObject?)
-                }
+    static func makeNetworkRequest<T:Parsable>(_ success: Bool, _ urlString: String,completion: @escaping(([T])->Void)){
+        guard let url = URL(string: urlString) else{
+            print("problem with URL")
+            return
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url){(data, response, error) in
+            guard let data = data  else {
+                print("\(error?.localizedDescription)")
+                return
             }
-            }.resume()
-
+        let result = T.parseJSON(data: data)
+        completion(result)
+        }
+        task.resume()
     }
 }

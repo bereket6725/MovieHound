@@ -64,10 +64,16 @@ class MovieCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionViewCell
         let movie = nowPlaying[indexPath.row]
         cell.movieTitleLabel.text = movie.title
-        
+        CacheManager.getImage(forCell: cell, withMovieObject: movie)
+
         // Configure the cell
     
         return cell
+    }
+
+    func getCollectionViewImage(forCell cell: UICollectionViewCell, movie: Movie){
+
+
     }
 
     // MARK: UICollectionViewDelegate
