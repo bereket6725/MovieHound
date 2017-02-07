@@ -16,8 +16,13 @@ class MovieCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        //loadPlayingMovies()
     }
-
+    func loadPlayingMovies(){
+        callMovieNowPlayingAPI{ movieArray in
+            self.nowPlaying = movieArray
+        }
+    }
     func loadData(){
         Movie.nowPLaying { (success: Bool, movieList: [Movie]?) in
             //print(movieList ?? "couldnt get a movie List :(")
@@ -30,6 +35,10 @@ class MovieCollectionViewController: UICollectionViewController {
 
         }
         
+    }
+
+    func callMovieNowPlayingAPI(completion: @escaping(([Movie])->Void)){
+        APIManager.makeNetworkRequest(urlString: Constants.APIURLS.nowPlayingMovieAPIURL, completion: completion)
     }
 
     override func didReceiveMemoryWarning() {

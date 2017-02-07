@@ -37,7 +37,6 @@ class CacheManager{
                     let collectionViewCell = cell as! MovieCollectionViewCell
                     collectionViewCell.movieImageView?.image = UIImage(data: imageData)
                     collectionViewCell.setNeedsLayout()
-                    collectionViewCell
                 }
             }
         }
