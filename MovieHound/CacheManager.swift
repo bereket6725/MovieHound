@@ -72,7 +72,7 @@ class CacheManager{
     }
 
     private static func downloadImageAndSaveToDisk(forCell cell: AnyObject, withMovieObject movie: MovieModel){
-        let imagePath = Movie.imageBaseURL + movie.imagePath
+        let imagePath = MovieModel.imageBaseURL + movie.imagePath
         let imageURL = URL(string: imagePath)
 
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
