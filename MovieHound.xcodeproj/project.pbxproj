@@ -14,6 +14,7 @@
 		E326DC0D1E46746700A02463 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */; };
 		E326DC111E467AD500A02463 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326DC101E467AD500A02463 /* CacheManager.swift */; };
 		E34D63001E5277D4004719FA /* MoviePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34D62FF1E5277D4004719FA /* MoviePresentationController.swift */; };
+		E34D63021E5286E9004719FA /* MovieTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34D63011E5286E9004719FA /* MovieTransitioner.swift */; };
 		E36C62A01E43F28C008393F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36C629F1E43F28C008393F6 /* AppDelegate.swift */; };
 		E36C62A51E43F28C008393F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C62A31E43F28C008393F6 /* Main.storyboard */; };
 		E36C62A71E43F28C008393F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E36C62A61E43F28C008393F6 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E326DC101E467AD500A02463 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		E34D62FF1E5277D4004719FA /* MoviePresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePresentationController.swift; sourceTree = "<group>"; };
+		E34D63011E5286E9004719FA /* MovieTransitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTransitioner.swift; sourceTree = "<group>"; };
 		E36C629C1E43F28C008393F6 /* MovieHound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36C629F1E43F28C008393F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E36C62A41E43F28C008393F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				E326DC0C1E46746700A02463 /* MovieCollectionViewCell.swift */,
 				E30A426F1E4A7837003D498A /* MovieModel.swift */,
 				E34D62FF1E5277D4004719FA /* MoviePresentationController.swift */,
+				E34D63011E5286E9004719FA /* MovieTransitioner.swift */,
 				E326DC101E467AD500A02463 /* CacheManager.swift */,
 				E30A426D1E4A760C003D498A /* APIManager.swift */,
 				E30A42711E4A81CD003D498A /* DetailMovieViewController.swift */,
@@ -226,6 +229,7 @@
 			files = (
 				E30A42701E4A7837003D498A /* MovieModel.swift in Sources */,
 				E30A426E1E4A760C003D498A /* APIManager.swift in Sources */,
+				E34D63021E5286E9004719FA /* MovieTransitioner.swift in Sources */,
 				E3A1E4CD1E47B95D007B76C6 /* Constants .swift in Sources */,
 				E326DC0B1E46743900A02463 /* MovieCollectionViewController.swift in Sources */,
 				E3A1E4CF1E47C266007B76C6 /* Parsable .swift in Sources */,
