@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class MovieCollectionViewController: UICollectionViewController {
     var nowPlaying = [MovieModel]()
+    let movieTransitionDelegate = MovieTranstionDelegate()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +39,7 @@ class MovieCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -66,6 +57,25 @@ class MovieCollectionViewController: UICollectionViewController {
         CacheManager.getImage(forCell: cell, withMovieObject: movie)
         // Configure the cell
         return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showOverLay(forIndexPath: indexPath)
+    }
+
+    func showOverLay(forIndexPath indexPath: IndexPath){
+        let storyboard = UIStoryboard(name: "main", bundle: nil)
+        let overlayVC = storyboard.instantiateViewController(withIdentifier: "Overlay") as! DetailMovieViewController
+
+        transitioningDelegate = movieTransitionDelegate
+        overlayVC.transitioningDelegate = movieTransitionDelegate
+        overlayVC.modalPresentationStyle = .custom
+
+        let movie = nowPlaying[indexPath.row]
+        self.present(overlayVC, animated: true, completion: nil)
+        overlayVC.movieItem = movie
+
+
     }
 
    }
