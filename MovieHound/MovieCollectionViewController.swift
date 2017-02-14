@@ -65,7 +65,9 @@ class MovieCollectionViewController: UICollectionViewController {
     }
 
     func showOverLay(forIndexPath indexPath: IndexPath){
-        let storyboard = UIStoryboard(name: "main", bundle: nil)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
         let overlayVC = storyboard.instantiateViewController(withIdentifier: "Overlay") as! DetailMovieViewController
 
         transitioningDelegate = movieTransitionDelegate
