@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class MovieCollectionViewController: UICollectionViewController {
     var nowPlaying = [MovieModel]()
-    let movieTransitionDelegate = MovieTranstionDelegate()
+    let movieTransitionDelegate = MovieTransitionDelegate()
 
 
     override func viewDidLoad() {
@@ -61,6 +61,7 @@ class MovieCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         showOverLay(forIndexPath: indexPath)
+        
     }
 
     func showOverLay(forIndexPath indexPath: IndexPath){
@@ -68,11 +69,15 @@ class MovieCollectionViewController: UICollectionViewController {
         let overlayVC = storyboard.instantiateViewController(withIdentifier: "Overlay") as! DetailMovieViewController
 
         transitioningDelegate = movieTransitionDelegate
+        
         overlayVC.transitioningDelegate = movieTransitionDelegate
+
         overlayVC.modalPresentationStyle = .custom
 
         let movie = nowPlaying[indexPath.row]
+
         self.present(overlayVC, animated: true, completion: nil)
+
         overlayVC.movieItem = movie
 
 

@@ -27,7 +27,7 @@ class DetailMovieViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.bounds.size = CGSize(width: UIScreen.main.bounds.size.width - 20, height: 350)
+        self.view.bounds.size = CGSize(width: UIScreen.main.bounds.size.width - 40, height: 350)
         self.view.layer.cornerRadius = 5
 
     }
