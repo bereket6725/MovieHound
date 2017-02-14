@@ -106,7 +106,7 @@
         <!--Detail Movie View Controller-->
         <scene sceneID="pf4-Mp-4iN">
             <objects>
-                <viewController id="rQR-wy-Adm" customClass="DetailMovieViewController" customModule="MovieHound" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Overlay" id="rQR-wy-Adm" customClass="DetailMovieViewController" customModule="MovieHound" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tjz-8d-apA"/>
                         <viewControllerLayoutGuide type="bottom" id="sGC-c8-mHj"/>
@@ -141,11 +141,14 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aco-YM-7J1">
-                                <rect key="frame" x="81" y="216" width="46" height="34"/>
+                                <rect key="frame" x="81" y="216" width="63" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Close">
+                                <state key="normal" title="Dismiss">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="dismissButtonTapped:" destination="rQR-wy-Adm" eventType="touchUpInside" id="gMK-nN-iTv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,6 +164,10 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="350"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="TiY-Z2-wct" id="xfk-Sl-JMk"/>
+                        <outlet property="titleLabel" destination="nw4-oU-Jak" id="0oH-ca-Jsg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4Y-et-lVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
