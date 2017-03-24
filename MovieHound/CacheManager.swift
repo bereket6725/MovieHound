@@ -42,32 +42,6 @@ class CacheManager{
         }
         else{//have to download image and save it to disk
             downloadImageAndSaveToDisk(forCell: cell, withMovieObject: movie)
-
-//            let imagePath = Movie.imageBaseURL + movie.imagePath
-//            let imageURL = URL(string: imagePath)
-//
-//            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
-//                do {
-//                    let data = try Data(contentsOf: imageURL!)
-//                    if let documents = getDocumentsDirectory(){
-//                    let imageFilePathString = documents + "/\(movie.title)"
-//                    let escapedImagePath = imageFilePathString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-//                    if FileManager.default.createFile(atPath: escapedImagePath, contents: data, attributes: nil){
-//                        print("imageSaved")
-//                    }
-//                    }
-//                    DispatchQueue.main.async(execute: {
-//                        if cell is UICollectionViewCell{
-//                            let collectionViewCell = cell as! MovieCollectionViewCell
-//                            collectionViewCell.movieImageView?.image = UIImage(data: data)
-//                            collectionViewCell.setNeedsLayout()
-//                        }                    })
-//
-//                }
-//                catch {
-//                    print("no image at specified location")
-//                }
-//            }
         }
     }
 
@@ -91,7 +65,6 @@ class CacheManager{
                         collectionViewCell.movieImageView?.image = UIImage(data: data)
                         collectionViewCell.setNeedsLayout()
                     }                    })
-
             }
             catch {
                 print("no image at specified location")
