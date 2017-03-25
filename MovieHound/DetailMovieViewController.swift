@@ -8,12 +8,15 @@
 
 import UIKit
 
+protocol DetailMovieViewControllerDelegate: class {
+    func detailMovieViewControllerUserDidTapDetails(_ controller: DetailMovieViewController)
+}
+
 class DetailMovieViewController: UIViewController {
-
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-
+    weak var delegate: DetailMovieViewControllerDelegate?
+    
     var movieItem:MovieModel? {
         didSet{
             configureView()
@@ -36,6 +39,10 @@ class DetailMovieViewController: UIViewController {
             self.titleLabel.text = movie.title
             self.descriptionTextView.text = movie.description
         }
+    }
+    
+    @IBAction func seeReviewsButtonTapped(_ sender: Any) {
+        self.delegate?.detailMovieViewControllerUserDidTapDetails(self)
     }
 
     @IBAction func dismissButtonTapped(_ sender: Any) {
