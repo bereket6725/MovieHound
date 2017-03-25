@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 private let reuseIdentifier = "Cell"
 
@@ -65,24 +66,25 @@ class MovieCollectionViewController: UICollectionViewController {
     }
 
     func showOverLay(forIndexPath indexPath: IndexPath){
-
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
         let overlayVC = storyboard.instantiateViewController(withIdentifier: "Overlay") as! DetailMovieViewController
-
+        overlayVC.delegate = self
         transitioningDelegate = movieTransitionDelegate
-        
         overlayVC.transitioningDelegate = movieTransitionDelegate
-
         overlayVC.modalPresentationStyle = .custom
-
         let movie = nowPlaying[indexPath.row]
-
         self.present(overlayVC, animated: true, completion: nil)
-
         overlayVC.movieItem = movie
-
-
     }
-
    }
+
+extension MovieCollectionViewController: DetailMovieViewControllerDelegate  {
+    
+    func detailMovieViewControllerUserDidTapDetails(_ controller: DetailMovieViewController) {
+        self.dismiss(animated: true) { 
+            let viewController = SFSafariViewController(url: URL(string: "https://ashfurrow.com")!)
+            self.present(viewController, animated: true, completion: nil)
+        }
+    }
+    
+}
