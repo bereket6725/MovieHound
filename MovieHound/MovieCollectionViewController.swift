@@ -9,8 +9,7 @@
 import UIKit
 import SafariServices
 import SVProgressHUD
-import PercentEncoder
-import SwiftyJSON
+
 
 private let reuseIdentifier = "Cell"
 
@@ -81,26 +80,24 @@ class MovieCollectionViewController: UICollectionViewController {
     }
 }
 
-let nytAPIKey = "b915e0e8e17f40b8a425f0d3ff73c0f2"
+
 
 extension MovieCollectionViewController: DetailMovieViewControllerDelegate  {
     
     func detailMovieViewControllerUserDidTapDetails(_ controller: DetailMovieViewController) {
+        let movieTitle = controller.movieItem?.title ?? ""
         self.dismiss(animated: true) {
             SVProgressHUD.show()
-            // TODO: make a network request to determine URL to display
-            let query = "Get Out".ped_encodeURI()
-            let urlString = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=\(nytAPIKey)&query=\(query)"
-            APIManager.makeRawNetworkRequest(urlString: urlString, completion: { (data) in
-                SVProgressHUD.dismiss()
-                let json = JSON(data: data)
-                let results = json["results"].arrayValue
-                let firstResult = results.first!
-                let link = firstResult["link"].dictionaryValue["url"]!.stringValue
-                
-                // TODO: parse data and extract URL, then present that URL
-                let viewController = SFSafariViewController(url: URL(string: link)!)
-                self.present(viewController, animated: true, completion: nil)
+            APIManager.makeNYTNetworkRequest(forQuery: movieTitle, completion: { (result) in
+                switch result {
+                case .success(let url):
+                    SVProgressHUD.dismiss()
+                    let viewController = SFSafariViewController(url: url)
+                    self.present(viewController, animated: true, completion: nil)
+                case .error(let errorDescription):
+                    SVProgressHUD.showError(withStatus: errorDescription)
+                    SVProgressHUD.dismiss(withDelay: 2)
+                }
             })
         }
     }
