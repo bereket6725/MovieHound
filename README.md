@@ -9,7 +9,7 @@ An app to let you know about upcoming movies, their reviews and song credits. Wo
 3. Retrieves songs from movies when cells are tapped [(In progress)](https://github.com/bereket6725/MovieHound/issues/2)
 
 
-Going to use a [library](https://github.com/rs/SDWebImage) to Cache the poster images instead of havign a custom one 
+Going to use a [library](https://github.com/rs/SDWebImage) to Cache the poster images instead of having a custom one 
 
 
 # License 
