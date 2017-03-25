@@ -30,10 +30,16 @@ class MovieCollectionViewController: UICollectionViewController {
     }
     
     func callMovieNowPlayingAPI(completion: @escaping(([MovieModel])->Void)){
-        APIManager.makeNetworkRequest(urlString: Constants.APIURLS.nowPlayingMovieAPIURL, completion: { results in
-            DispatchQueue.main.async {
-                completion(results)
-            }
+        APIManager.makeNetworkRequest(urlString: Constants.APIURLS.nowPlayingMovieAPIURL, completion: { (results: Result<[MovieModel]>) in
+            DispatchQueue.main.async(execute: {
+                switch results {
+                case .success(let models):
+                    completion(models)
+                case .error(let error):
+                    SVProgressHUD.showError(withStatus: error)
+                    SVProgressHUD.dismiss(withDelay: 2)
+                }
+            })
         })
     }
 
