@@ -7,6 +7,8 @@ target 'MovieHound' do
 
   # Pods for MovieHound
   pod 'SVProgressHUD'
+  pod 'PercentEncoder'
+  pod 'SwiftyJSON'
 
   target 'MovieHoundTests' do
     inherit! :search_paths

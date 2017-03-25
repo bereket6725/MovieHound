@@ -11,6 +11,13 @@ import Foundation
 
 class APIManager {
     static func makeNetworkRequest<T:Parsable>(urlString:String, completion: @escaping (([T])->Void)){
+        makeRawNetworkRequest(urlString: urlString) { (data) in
+            let result = T.parseJSON(data: data)
+            completion(result)
+        }
+    }
+
+    static func makeRawNetworkRequest(urlString: String, completion: @escaping ((Data) -> Void)) {
         guard let URL = URL(string: urlString) else {
             print("problem with URL")
             return
@@ -21,12 +28,9 @@ class APIManager {
                 print("\(error?.localizedDescription)")
                 return
             }
-
-            let result = T.parseJSON(data: data!)
-            completion(result)
+            
+            completion(data!)
         }
         task.resume()
     }
-
-    
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 import SafariServices
+import SVProgressHUD
+import PercentEncoder
+import SwiftyJSON
 
 private let reuseIdentifier = "Cell"
 
@@ -76,14 +79,29 @@ class MovieCollectionViewController: UICollectionViewController {
         self.present(overlayVC, animated: true, completion: nil)
         overlayVC.movieItem = movie
     }
-   }
+}
+
+let nytAPIKey = "b915e0e8e17f40b8a425f0d3ff73c0f2"
 
 extension MovieCollectionViewController: DetailMovieViewControllerDelegate  {
     
     func detailMovieViewControllerUserDidTapDetails(_ controller: DetailMovieViewController) {
-        self.dismiss(animated: true) { 
-            let viewController = SFSafariViewController(url: URL(string: "https://ashfurrow.com")!)
-            self.present(viewController, animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            SVProgressHUD.show()
+            // TODO: make a network request to determine URL to display
+            let query = "Get Out".ped_encodeURI()
+            let urlString = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=\(nytAPIKey)&query=\(query)"
+            APIManager.makeRawNetworkRequest(urlString: urlString, completion: { (data) in
+                SVProgressHUD.dismiss()
+                let json = JSON(data: data)
+                let results = json["results"].arrayValue
+                let firstResult = results.first!
+                let link = firstResult["link"].dictionaryValue["url"]!.stringValue
+                
+                // TODO: parse data and extract URL, then present that URL
+                let viewController = SFSafariViewController(url: URL(string: link)!)
+                self.present(viewController, animated: true, completion: nil)
+            })
         }
     }
     

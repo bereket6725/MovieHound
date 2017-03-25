@@ -1,12 +1,18 @@
 PODS:
+  - PercentEncoder (1.1.0)
   - SVProgressHUD (2.1.2)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - PercentEncoder
   - SVProgressHUD
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  PercentEncoder: 7a001be188d62187761cb785156ac7e5c105688d
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 90e7103d6fffb2043f7abef0d39589b661b78a31
+PODFILE CHECKSUM: 7e503cc64d4bff6c51803cc9b9dda3ed9a13cf73
 
 COCOAPODS: 1.2.0
