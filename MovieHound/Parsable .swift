@@ -12,3 +12,6 @@ import Foundation
 protocol Parsable{
 static func parseJSON(data: Data) -> [Self]
 }
+
+
+//
